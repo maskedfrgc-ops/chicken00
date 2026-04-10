@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>chicken</title>
+  <link rel="icon" href="ghost.png" id="site-favicon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <div class="grid-overlay"></div>
+    <div class="glow glow-left"></div>
+    <div class="glow glow-right"></div>
+
+    <header class="topbar glass-panel">
+      <div class="brand-block">
+        <div>
+          <h1>chicken</h1>
+        </div>
+      </div>
+      <div class="toolbar">
+        <button type="button" class="toolbar-button" id="games-view-button">Games</button>
+        <button type="button" class="toolbar-button" id="chat-view-button">Chat</button>
+        <div class="presence-pill glass-panel">
+          <span class="presence-dot"></span>
+          <span><strong id="active-count">0</strong> active now</span>
+        </div>
+        <label class="search-wrap" for="search-input">
+          <span>Search</span>
+          <input id="search-input" type="search" placeholder="Find a game...">
+        </label>
+      </div>
+    </header>
+
+    <main>
+      <section class="view-panel" id="games-view">
+        <p class="status" id="status-text">Loading games...</p>
+        <section class="games-grid" id="games-grid" aria-live="polite"></section>
+      </section>
+      <section class="chat-shell glass-panel hidden" id="chat-view">
+        <div class="chat-top">
+          <div>
+            <p class="eyebrow">Community</p>
+            <h2>chat</h2>
+          </div>
+          <p class="chat-note">This chat works across tabs on this browser. True multi-user chat needs a shared backend, so this version stays honest about that.</p>
+        </div>
+        <form class="chat-profile" id="chat-profile-form">
+          <label>
+            <span>Username</span>
+            <input id="chat-username" type="text" maxlength="24" placeholder="pick a name">
+          </label>
+          <div class="file-control">
+            <span>Profile Picture</span>
+            <button type="button" class="file-button" id="chat-avatar-button">Image</button>
+            <input id="chat-avatar" type="file" accept="image/*" hidden>
+          </div>
+          <button type="submit">Save Profile</button>
+        </form>
+        <div class="chat-messages" id="chat-messages" aria-live="polite"></div>
+        <form class="chat-compose" id="chat-compose-form">
+          <label class="compose-grow">
+            <span>Message</span>
+            <textarea id="chat-input" rows="3" placeholder="say something..."></textarea>
+          </label>
+          <button type="submit">Send</button>
+          <div class="file-control">
+            <span>Image</span>
+            <button type="button" class="file-button" id="chat-image-button">Image</button>
+            <input id="chat-image" type="file" accept="image/*" hidden>
+          </div>
+        </form>
+        <section class="admin-shell glass-panel hidden" id="admin-panel">
+          <div class="admin-top">
+            <div>
+              <p class="eyebrow">Admin</p>
+              <h2>panel</h2>
+            </div>
+            <button type="button" class="toolbar-button" id="admin-lock-button">Lock</button>
+          </div>
+          <div class="admin-grid">
+            <button type="button" class="toolbar-button" id="admin-clear-chat">Clear Chat</button>
+            <button type="button" class="toolbar-button" id="admin-clear-profile">Clear Profile</button>
+            <button type="button" class="toolbar-button" id="admin-reset-names">Reset Names</button>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <section class="player-overlay" id="player-overlay" aria-hidden="true">
+    <div class="player-frame">
+      <div class="player-bar glass-panel">
+        <div class="player-meta">
+          <p class="eyebrow">Now playing</p>
+          <h4 id="player-title">Game</h4>
+        </div>
+        <div class="player-actions">
+          <button type="button" id="retry-iframe-button">Retry in Frame</button>
+          <button type="button" id="open-tab-button">Open in New Tab</button>
+          <button type="button" id="close-player-button" class="close-button">Close</button>
+        </div>
+      </div>
+      <p class="player-hint" id="player-hint">If a game stays black here, use Open in New Tab. Some games block embedding.</p>
+      <iframe id="game-frame" title="Game player" referrerpolicy="no-referrer" allow="fullscreen; autoplay; gamepad *; clipboard-read; clipboard-write"></iframe>
+    </div>
+  </section>
+
+  <template id="game-card-template">
+    <article class="game-card glass-panel">
+      <button class="game-card-button" type="button">
+        <img class="game-thumb" alt="" loading="lazy">
+        <div class="game-info">
+          <h4 class="game-title"></h4>
+          <p class="game-tags"></p>
+        </div>
+      </button>
+    </article>
+  </template>
+
+  <script src="games-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
