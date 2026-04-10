@@ -1,13 +1,5 @@
 window.GAME_CATALOG = [
-    {
-        "id":  -1,
-        "name":  "[!] SUGGEST GAMES .gg/D4c9VFYWyU",
-        "cover":  "{COVER_URL}/dc.png",
-        "url":  "https://discord.gg/D4c9VFYWyU",
-        "author":  null,
-        "authorLink":  null,
-        "special":  null
-    },
+
     {
         "id":  0,
         "name":  "Bowmasters",
